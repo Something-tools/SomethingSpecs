@@ -1,0 +1,1939 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      { "name": "router_", "type": "address", "internalType": "address" },
+      {
+        "name": "liquidityLocker_",
+        "type": "address",
+        "internalType": "address"
+      },
+      { "name": "treasury_", "type": "address", "internalType": "address" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  { "type": "receive", "stateMutability": "payable" },
+  {
+    "type": "function",
+    "name": "DEFAULT_BPS_DENOMINATOR",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "PAIR_CREATOR_SALT_TYPEHASH",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bytes32", "internalType": "bytes32" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "TOKEN_DECIMALS",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint8", "internalType": "uint8" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "TOTAL_SUPPLY",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "WAD",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "WETH",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "allowCustomFees",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "allowedAssets",
+    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [
+      { "name": "approved", "type": "bool", "internalType": "bool" },
+      { "name": "frozen", "type": "bool", "internalType": "bool" },
+      {
+        "name": "migrationFeeNumerator",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "tradeFeeBpsNumerator",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "minInitialQuoteAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "approveAsset",
+    "inputs": [
+      { "name": "asset", "type": "address", "internalType": "address" },
+      {
+        "name": "config",
+        "type": "tuple",
+        "internalType": "struct ISmthCurveConfig.AssetConfig",
+        "components": [
+          { "name": "approved", "type": "bool", "internalType": "bool" },
+          { "name": "frozen", "type": "bool", "internalType": "bool" },
+          {
+            "name": "migrationFeeNumerator",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tradeFeeBpsNumerator",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minInitialQuoteAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "buyToken",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      {
+        "name": "minTokensOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "buyWithNative",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      {
+        "name": "minTokensOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "tokensOut", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "buyWithQuote",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      {
+        "name": "quoteGrossAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "minTokensOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "tokensOut", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "defaultAssetConfig",
+    "inputs": [],
+    "outputs": [
+      { "name": "approved", "type": "bool", "internalType": "bool" },
+      { "name": "frozen", "type": "bool", "internalType": "bool" },
+      {
+        "name": "migrationFeeNumerator",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "tradeFeeBpsNumerator",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "minInitialQuoteAmount",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "factory",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "finalizeAndMigrate",
+    "inputs": [
+      { "name": "token_", "type": "address", "internalType": "address" },
+      {
+        "name": "tokenAuthorization",
+        "type": "tuple",
+        "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
+        "components": [
+          {
+            "name": "authority",
+            "type": "address",
+            "internalType": "address"
+          },
+          { "name": "token", "type": "address", "internalType": "address" },
+          { "name": "caller", "type": "address", "internalType": "address" },
+          { "name": "creator", "type": "address", "internalType": "address" },
+          {
+            "name": "creatorNonce",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "actionNonce",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "signature", "type": "bytes", "internalType": "bytes" }
+        ]
+      },
+      {
+        "name": "quoteAuthorization",
+        "type": "tuple",
+        "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
+        "components": [
+          {
+            "name": "authority",
+            "type": "address",
+            "internalType": "address"
+          },
+          { "name": "token", "type": "address", "internalType": "address" },
+          { "name": "caller", "type": "address", "internalType": "address" },
+          { "name": "creator", "type": "address", "internalType": "address" },
+          {
+            "name": "creatorNonce",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "actionNonce",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "signature", "type": "bytes", "internalType": "bytes" }
+        ]
+      },
+      { "name": "feeClaimer2", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "freeze_approval",
+    "inputs": [
+      { "name": "asset", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "isInitialized",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint8", "internalType": "uint8" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "launchToken",
+    "inputs": [
+      { "name": "name_", "type": "string", "internalType": "string" },
+      { "name": "symbol_", "type": "string", "internalType": "string" },
+      { "name": "uri_", "type": "string", "internalType": "string" },
+      {
+        "name": "initialAmmQuoteAmount_",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "initialRatio_",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "quoteAsset_", "type": "address", "internalType": "address" },
+      {
+        "name": "feePercent_",
+        "type": "uint8",
+        "internalType": "enum ISmthTokenFactory.FeePercent"
+      }
+    ],
+    "outputs": [
+      { "name": "tokenAddress", "type": "address", "internalType": "address" }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "launchTokenWithCustomFees",
+    "inputs": [
+      { "name": "name_", "type": "string", "internalType": "string" },
+      { "name": "symbol_", "type": "string", "internalType": "string" },
+      { "name": "uri_", "type": "string", "internalType": "string" },
+      {
+        "name": "initialAmmQuoteAmount_",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "initialRatio_",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "quoteAsset_", "type": "address", "internalType": "address" },
+      {
+        "name": "feeParams_",
+        "type": "tuple",
+        "internalType": "struct IFeeController.FeeParams",
+        "components": [
+          {
+            "name": "baseFeeParams",
+            "type": "tuple",
+            "internalType": "struct IFeeController.BaseFee",
+            "components": [
+              {
+                "name": "baseFeeBps",
+                "type": "uint24",
+                "internalType": "uint24"
+              },
+              {
+                "name": "wToken0In",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "wToken1In",
+                "type": "uint256",
+                "internalType": "uint256"
+              }
+            ]
+          },
+          {
+            "name": "dynamicFeeParams",
+            "type": "tuple",
+            "internalType": "struct IFeeController.DynamicFeeParams",
+            "components": [
+              {
+                "name": "config",
+                "type": "tuple",
+                "internalType": "struct IFeeController.DynamicFeeConfig",
+                "components": [
+                  {
+                    "name": "halfTimePeriod",
+                    "type": "uint40",
+                    "internalType": "uint40"
+                  },
+                  {
+                    "name": "maxCapBps",
+                    "type": "uint24",
+                    "internalType": "uint24"
+                  },
+                  {
+                    "name": "b1",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "b2",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "sensitivity",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "a0",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "liquidityReference",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "minNormalizedVolume",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ]
+              },
+              {
+                "name": "option",
+                "type": "uint8",
+                "internalType": "enum IFeeController.DynamicFeeInitializationState"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      { "name": "tokenAddress", "type": "address", "internalType": "address" }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "liquidityLocker",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract ISomeLiquidityLocker"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "migrationAuthority",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "migrationAuthorityFee",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "migrationWallet",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "minInitialQuoteNative",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pause",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "paused",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "predictPairCreatorToken",
+    "inputs": [
+      { "name": "creator", "type": "address", "internalType": "address" },
+      { "name": "nonce", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "token", "type": "address", "internalType": "address" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "quoteBuy",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      { "name": "quoteGrossIn", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "tokensOut", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "quoteGrossUsed",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "quoteRefund", "type": "uint256", "internalType": "uint256" },
+      { "name": "feeCollected", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "quoteSell",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      { "name": "tokenAmount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "quoteNetOut", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "quoteGrossOut",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "feeCollected", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "referralTradeFeeNumerator",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "referralWallet",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "revoke_freeze_approval",
+    "inputs": [
+      { "name": "asset", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "router",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "sellForNative",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      { "name": "tokenAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "minQuoteOut", "type": "uint256", "internalType": "uint256" },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "netQuoteOut", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "sellForNativeWithPermit",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      { "name": "tokenAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "minQuoteOut", "type": "uint256", "internalType": "uint256" },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" },
+      { "name": "signature", "type": "bytes", "internalType": "bytes" }
+    ],
+    "outputs": [
+      { "name": "netQuoteOut", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "sellForQuote",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      { "name": "tokenAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "minQuoteOut", "type": "uint256", "internalType": "uint256" },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      { "name": "netQuoteOut", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "sellForQuoteWithPermit",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      { "name": "tokenAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "minQuoteOut", "type": "uint256", "internalType": "uint256" },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" },
+      { "name": "signature", "type": "bytes", "internalType": "bytes" }
+    ],
+    "outputs": [
+      { "name": "netQuoteOut", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "sellToken",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      { "name": "tokenAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "minQuoteOut", "type": "uint256", "internalType": "uint256" },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "sellTokenWithPermit",
+    "inputs": [
+      { "name": "_token", "type": "address", "internalType": "address" },
+      { "name": "tokenAmount", "type": "uint256", "internalType": "uint256" },
+      { "name": "minQuoteOut", "type": "uint256", "internalType": "uint256" },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" },
+      { "name": "signature", "type": "bytes", "internalType": "bytes" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setAllowCustomFees",
+    "inputs": [{ "name": "allowed", "type": "bool", "internalType": "bool" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setConfig",
+    "inputs": [
+      { "name": "tokenDecimals_", "type": "uint8", "internalType": "uint8" },
+      {
+        "name": "liquidityLocker_",
+        "type": "address",
+        "internalType": "address"
+      },
+      { "name": "router_", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setLiquidityLocker",
+    "inputs": [
+      { "name": "locker", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMigrationAuthority",
+    "inputs": [
+      {
+        "name": "migrationAuthority_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMigrationAuthorityFee",
+    "inputs": [
+      {
+        "name": "migrationAuthorityFee_",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMigrationWallet",
+    "inputs": [
+      {
+        "name": "migrationWallet_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setMinInitialQuoteNative",
+    "inputs": [
+      { "name": "amount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setReferralWallet",
+    "inputs": [
+      {
+        "name": "referralWallet_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setRouter",
+    "inputs": [
+      { "name": "router_", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setTradeFeeSplit",
+    "inputs": [
+      { "name": "denominator", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "treasuryNumerator",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "referralNumerator",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setTreasury",
+    "inputs": [
+      { "name": "treasury_", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "sweepNative",
+    "inputs": [
+      { "name": "to", "type": "address", "internalType": "address payable" },
+      { "name": "amount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "tokenDecimals",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint8", "internalType": "uint8" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "tokenInfo",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct ISmthTokenFactory.TokenInfo",
+        "components": [
+          { "name": "creator", "type": "address", "internalType": "address" },
+          {
+            "name": "tokenAddress",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "quoteAsset",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "pairAddress",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "predictedPairAddress",
+            "type": "address",
+            "internalType": "address"
+          },
+          { "name": "name", "type": "string", "internalType": "string" },
+          { "name": "symbol", "type": "string", "internalType": "string" },
+          { "name": "uri", "type": "string", "internalType": "string" },
+          {
+            "name": "tokenTotalSupply",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tokenDecimals",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "launchNonce",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "launchSalt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "feePercent",
+            "type": "uint8",
+            "internalType": "enum ISmthTokenFactory.FeePercent"
+          },
+          {
+            "name": "useCustomPairFee",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "feeConfigId",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "feeParams",
+            "type": "tuple",
+            "internalType": "struct IFeeController.FeeParams",
+            "components": [
+              {
+                "name": "baseFeeParams",
+                "type": "tuple",
+                "internalType": "struct IFeeController.BaseFee",
+                "components": [
+                  {
+                    "name": "baseFeeBps",
+                    "type": "uint24",
+                    "internalType": "uint24"
+                  },
+                  {
+                    "name": "wToken0In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "wToken1In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ]
+              },
+              {
+                "name": "dynamicFeeParams",
+                "type": "tuple",
+                "internalType": "struct IFeeController.DynamicFeeParams",
+                "components": [
+                  {
+                    "name": "config",
+                    "type": "tuple",
+                    "internalType": "struct IFeeController.DynamicFeeConfig",
+                    "components": [
+                      {
+                        "name": "halfTimePeriod",
+                        "type": "uint40",
+                        "internalType": "uint40"
+                      },
+                      {
+                        "name": "maxCapBps",
+                        "type": "uint24",
+                        "internalType": "uint24"
+                      },
+                      {
+                        "name": "b1",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                      },
+                      {
+                        "name": "b2",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                      },
+                      {
+                        "name": "sensitivity",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                      },
+                      {
+                        "name": "a0",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                      },
+                      {
+                        "name": "liquidityReference",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                      },
+                      {
+                        "name": "minNormalizedVolume",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "option",
+                    "type": "uint8",
+                    "internalType": "enum IFeeController.DynamicFeeInitializationState"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "vQuoteReserves",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "vTokenReserves",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "rQuoteReserves",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "rTokenReserves",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "ammTokenReserves",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "migrationFee",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "isCompleted", "type": "bool", "internalType": "bool" },
+          {
+            "name": "liquidityMigrated",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "liquidityLocked",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          { "name": "pairCreated", "type": "bool", "internalType": "bool" },
+          { "name": "quoteIsWeth", "type": "bool", "internalType": "bool" },
+          {
+            "name": "feeClaimer1",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "feeClaimer2",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "lockerInitialized",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "assetConfig",
+            "type": "tuple",
+            "internalType": "struct ISmthCurveConfig.AssetConfig",
+            "components": [
+              { "name": "approved", "type": "bool", "internalType": "bool" },
+              { "name": "frozen", "type": "bool", "internalType": "bool" },
+              {
+                "name": "migrationFeeNumerator",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "tradeFeeBpsNumerator",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "minInitialQuoteAmount",
+                "type": "uint256",
+                "internalType": "uint256"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "tradeFeeSplitDenominator",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "transferOwnership",
+    "inputs": [
+      { "name": "newOwner", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "treasury",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "treasuryTradeFeeNumerator",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "unpause",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "MinInitialQuoteNativeUpdated",
+    "inputs": [
+      {
+        "name": "previousAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "newAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferred",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Paused",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__AllowCustomFeesUpdated",
+    "inputs": [
+      {
+        "name": "allowed",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__Buy",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "buyer",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "cost",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "vReserveQuote",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "vReserveToken",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rReserveQuote",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rReserveToken",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__CurveCompleted",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "vReserveQuote",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "vReserveToken",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rReserveQuote",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rReserveToken",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__LiquidityLocked",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "pair",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "lockedLiquidity",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__LiquidityLockerUpdated",
+    "inputs": [
+      {
+        "name": "locker",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__LiquidityMigrated",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "pair",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "tokenAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "quoteAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__MigrationAuthorityFeeUpdated",
+    "inputs": [
+      {
+        "name": "migrationAuthorityFee",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__MigrationAuthorityUpdated",
+    "inputs": [
+      {
+        "name": "migrationAuthority",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__MigrationWalletUpdated",
+    "inputs": [
+      {
+        "name": "wallet",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__ReferralWalletUpdated",
+    "inputs": [
+      {
+        "name": "referral",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__RouterUpdated",
+    "inputs": [
+      {
+        "name": "router",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__Sell",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "seller",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "amount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "refund",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "vReserveQuote",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "vReserveToken",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rReserveQuote",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rReserveToken",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__TokenLaunch",
+    "inputs": [
+      {
+        "name": "token",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "uri",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "vReserveQuote",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "vReserveToken",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rReserveQuote",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rReserveToken",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "initialRatio",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "initialAmmQuoteAmount",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "creator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "quoteAsset",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "feePercent",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "enum ISmthTokenFactory.FeePercent"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__TradeFeeSplitUpdated",
+    "inputs": [
+      {
+        "name": "denominator",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "treasuryNumerator",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "referralNumerator",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SmthTokenFactory__TreasuryUpdated",
+    "inputs": [
+      {
+        "name": "treasury",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Unpaused",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "UseConfig",
+    "inputs": [
+      {
+        "name": "config",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct ISmthCurveConfig.AssetConfig",
+        "components": [
+          { "name": "approved", "type": "bool", "internalType": "bool" },
+          { "name": "frozen", "type": "bool", "internalType": "bool" },
+          {
+            "name": "migrationFeeNumerator",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "tradeFeeBpsNumerator",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "minInitialQuoteAmount",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  { "type": "error", "name": "EnforcedPause", "inputs": [] },
+  { "type": "error", "name": "ExpectedPause", "inputs": [] },
+  { "type": "error", "name": "InvalidMinInitialQuote", "inputs": [] },
+  { "type": "error", "name": "InvalidTradeFeeBps", "inputs": [] },
+  { "type": "error", "name": "IvalidMigrationFeeNumerator", "inputs": [] },
+  { "type": "error", "name": "NotERC20", "inputs": [] },
+  {
+    "type": "error",
+    "name": "OwnableInvalidOwner",
+    "inputs": [
+      { "name": "owner", "type": "address", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OwnableUnauthorizedAccount",
+    "inputs": [
+      { "name": "account", "type": "address", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "PRBMath_MulDiv_Overflow",
+    "inputs": [
+      { "name": "x", "type": "uint256", "internalType": "uint256" },
+      { "name": "y", "type": "uint256", "internalType": "uint256" },
+      { "name": "denominator", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  { "type": "error", "name": "ReentrancyGuardReentrantCall", "inputs": [] },
+  {
+    "type": "error",
+    "name": "SafeERC20FailedOperation",
+    "inputs": [
+      { "name": "token", "type": "address", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__AssetNotApproved",
+    "inputs": [
+      { "name": "asset", "type": "address", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__BaseRaiseZero",
+    "inputs": [
+      { "name": "netSS", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "migrationFeeWad",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__Custom",
+    "inputs": [{ "name": "", "type": "string", "internalType": "string" }]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__CustomFeesDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__FactoryTokenBalanceTooLow",
+    "inputs": [
+      { "name": "required", "type": "uint256", "internalType": "uint256" },
+      { "name": "actual", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__IdenticalTokens",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__IncompatibleGeometry",
+    "inputs": [
+      { "name": "S", "type": "uint256", "internalType": "uint256" },
+      { "name": "R", "type": "uint256", "internalType": "uint256" },
+      { "name": "SS", "type": "uint256", "internalType": "uint256" },
+      { "name": "T", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InitialLiquidityAlreadyLocked",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InitialQuoteBelowMinimum",
+    "inputs": [
+      { "name": "provided", "type": "uint256", "internalType": "uint256" },
+      { "name": "required", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InsufficientFundsInProtocol",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InsufficientMigrationFee",
+    "inputs": [
+      { "name": "provided", "type": "uint256", "internalType": "uint256" },
+      { "name": "required", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InsufficientOutputAmount",
+    "inputs": [
+      { "name": "amount", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InsufficientQuoteForPartialFill",
+    "inputs": [
+      {
+        "name": "neededGrossWei",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "providedWei", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InsufficientTokenBalanceForLP",
+    "inputs": [
+      { "name": "required", "type": "uint256", "internalType": "uint256" },
+      { "name": "actual", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidBpsDenominator",
+    "inputs": [
+      {
+        "name": "bpsDenominator",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidDecimals",
+    "inputs": [{ "name": "decimals", "type": "uint8", "internalType": "uint8" }]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidFeeParams",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidInitialRatio",
+    "inputs": [
+      {
+        "name": "initialRatioBps",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      { "name": "denominator", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidMigrationFeeNumerator",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidNativeAmount",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidTR",
+    "inputs": [
+      { "name": "T", "type": "uint256", "internalType": "uint256" },
+      { "name": "R", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidTokenDelta",
+    "inputs": [
+      { "name": "tokenDelta", "type": "uint256", "internalType": "uint256" },
+      {
+        "name": "vTokenReserves",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidTradeFeeBpsNumerator",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidVirtualReservesForMigration",
+    "inputs": [
+      { "name": "vS", "type": "uint256", "internalType": "uint256" },
+      { "name": "vT", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__InvalidVirtuals",
+    "inputs": [
+      { "name": "vS", "type": "uint256", "internalType": "uint256" },
+      { "name": "vT", "type": "uint256", "internalType": "uint256" },
+      { "name": "R", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__MigrationFeeTooHigh",
+    "inputs": [
+      {
+        "name": "migrationFeeWad",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__NativeValueNotAllowed",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__NetRaiseZero",
+    "inputs": [
+      { "name": "gross", "type": "uint256", "internalType": "uint256" },
+      { "name": "feeBps", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__NotEnoughFunds",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__NotInitialized",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__PairCreatorDeployFailed",
+    "inputs": [{ "name": "salt", "type": "bytes32", "internalType": "bytes32" }]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__QuoteNotErc20",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__QuoteNotNative",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__SlippageExceeded",
+    "inputs": [
+      { "name": "required", "type": "uint256", "internalType": "uint256" },
+      { "name": "actual", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__TradeExpired",
+    "inputs": [
+      { "name": "timestamp", "type": "uint256", "internalType": "uint256" },
+      { "name": "deadline", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__TradeFeeTooHigh",
+    "inputs": [
+      { "name": "tradeFeeBps", "type": "uint256", "internalType": "uint256" },
+      { "name": "denominator", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  { "type": "error", "name": "SmthTokenFactory__TradeLocked", "inputs": [] },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__TransferFailed",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__UnauthorizedMigrator",
+    "inputs": [
+      { "name": "caller", "type": "address", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__UnknownFeePreset",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "SmthTokenFactory__UnknownPairCreatorToken",
+    "inputs": [
+      { "name": "creator", "type": "address", "internalType": "address" },
+      { "name": "nonce", "type": "uint256", "internalType": "uint256" }
+    ]
+  },
+  { "type": "error", "name": "SmthTokenFactory__ZeroAddress", "inputs": [] },
+  { "type": "error", "name": "SmthTokenFactory__ZeroAmount", "inputs": [] }
+]
