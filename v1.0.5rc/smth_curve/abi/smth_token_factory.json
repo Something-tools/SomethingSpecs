@@ -264,37 +264,6 @@
           { "name": "signature", "type": "bytes", "internalType": "bytes" }
         ]
       },
-      {
-        "name": "quoteAuthorization",
-        "type": "tuple",
-        "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
-        "components": [
-          {
-            "name": "authority",
-            "type": "address",
-            "internalType": "address"
-          },
-          { "name": "token", "type": "address", "internalType": "address" },
-          { "name": "caller", "type": "address", "internalType": "address" },
-          { "name": "creator", "type": "address", "internalType": "address" },
-          {
-            "name": "creatorNonce",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "actionNonce",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "deadline",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          { "name": "signature", "type": "bytes", "internalType": "bytes" }
-        ]
-      },
       { "name": "feeClaimer2", "type": "address", "internalType": "address" }
     ],
     "outputs": [],
@@ -390,60 +359,7 @@
               }
             ]
           },
-          {
-            "name": "dynamicFeeParams",
-            "type": "tuple",
-            "internalType": "struct IFeeController.DynamicFeeParams",
-            "components": [
-              {
-                "name": "config",
-                "type": "tuple",
-                "internalType": "struct IFeeController.DynamicFeeConfig",
-                "components": [
-                  {
-                    "name": "halfTimePeriod",
-                    "type": "uint40",
-                    "internalType": "uint40"
-                  },
-                  {
-                    "name": "maxCapBps",
-                    "type": "uint24",
-                    "internalType": "uint24"
-                  },
-                  {
-                    "name": "b1",
-                    "type": "uint256",
-                    "internalType": "uint256"
-                  },
-                  {
-                    "name": "b2",
-                    "type": "uint256",
-                    "internalType": "uint256"
-                  },
-                  {
-                    "name": "sensitivity",
-                    "type": "uint256",
-                    "internalType": "uint256"
-                  },
-                  {
-                    "name": "a0",
-                    "type": "uint256",
-                    "internalType": "uint256"
-                  },
-                  {
-                    "name": "liquidityReference",
-                    "type": "uint256",
-                    "internalType": "uint256"
-                  }
-                ]
-              },
-              {
-                "name": "option",
-                "type": "uint8",
-                "internalType": "enum IFeeController.DynamicFeeInitializationState"
-              }
-            ]
-          }
+          { "name": "useDynamicFee", "type": "bool", "internalType": "bool" }
         ]
       }
     ],
@@ -939,58 +855,9 @@
                 ]
               },
               {
-                "name": "dynamicFeeParams",
-                "type": "tuple",
-                "internalType": "struct IFeeController.DynamicFeeParams",
-                "components": [
-                  {
-                    "name": "config",
-                    "type": "tuple",
-                    "internalType": "struct IFeeController.DynamicFeeConfig",
-                    "components": [
-                      {
-                        "name": "halfTimePeriod",
-                        "type": "uint40",
-                        "internalType": "uint40"
-                      },
-                      {
-                        "name": "maxCapBps",
-                        "type": "uint24",
-                        "internalType": "uint24"
-                      },
-                      {
-                        "name": "b1",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "b2",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "sensitivity",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "a0",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "liquidityReference",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "option",
-                    "type": "uint8",
-                    "internalType": "enum IFeeController.DynamicFeeInitializationState"
-                  }
-                ]
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
               }
             ]
           },

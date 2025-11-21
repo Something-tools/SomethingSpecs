@@ -80,110 +80,14 @@
                 ]
               },
               {
-                "name": "dynamicFeeParams",
-                "type": "tuple",
-                "internalType": "struct IFeeController.DynamicFeeParams",
-                "components": [
-                  {
-                    "name": "config",
-                    "type": "tuple",
-                    "internalType": "struct IFeeController.DynamicFeeConfig",
-                    "components": [
-                      {
-                        "name": "halfTimePeriod",
-                        "type": "uint40",
-                        "internalType": "uint40"
-                      },
-                      {
-                        "name": "maxCapBps",
-                        "type": "uint24",
-                        "internalType": "uint24"
-                      },
-                      {
-                        "name": "b1",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "b2",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "sensitivity",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "a0",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "liquidityReference",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "option",
-                    "type": "uint8",
-                    "internalType": "enum IFeeController.DynamicFeeInitializationState"
-                  }
-                ]
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
               }
             ]
           },
           {
-            "name": "authA",
-            "type": "tuple",
-            "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
-            "components": [
-              {
-                "name": "authority",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "token",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "caller",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "creator",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "creatorNonce",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "actionNonce",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "deadline",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "signature",
-                "type": "bytes",
-                "internalType": "bytes"
-              }
-            ]
-          },
-          {
-            "name": "authB",
+            "name": "authorization",
             "type": "tuple",
             "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
             "components": [
@@ -304,63 +208,14 @@
                 ]
               },
               {
-                "name": "dynamicFeeParams",
-                "type": "tuple",
-                "internalType": "struct IFeeController.DynamicFeeParams",
-                "components": [
-                  {
-                    "name": "config",
-                    "type": "tuple",
-                    "internalType": "struct IFeeController.DynamicFeeConfig",
-                    "components": [
-                      {
-                        "name": "halfTimePeriod",
-                        "type": "uint40",
-                        "internalType": "uint40"
-                      },
-                      {
-                        "name": "maxCapBps",
-                        "type": "uint24",
-                        "internalType": "uint24"
-                      },
-                      {
-                        "name": "b1",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "b2",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "sensitivity",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "a0",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "liquidityReference",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "option",
-                    "type": "uint8",
-                    "internalType": "enum IFeeController.DynamicFeeInitializationState"
-                  }
-                ]
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
               }
             ]
           },
           {
-            "name": "authA",
+            "name": "authorization",
             "type": "tuple",
             "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
             "components": [
@@ -405,9 +260,90 @@
                 "internalType": "bytes"
               }
             ]
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      { "name": "amountA", "type": "uint256", "internalType": "uint256" },
+      { "name": "amountB", "type": "uint256", "internalType": "uint256" },
+      { "name": "liquidity", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addLiquidityAndPermanentLockMulti",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct ISomeRouter.AddLiquidityParamsMulti",
+        "components": [
+          { "name": "tokenA", "type": "address", "internalType": "address" },
+          { "name": "tokenB", "type": "address", "internalType": "address" },
+          {
+            "name": "amountADesired",
+            "type": "uint256",
+            "internalType": "uint256"
           },
           {
-            "name": "authB",
+            "name": "amountBDesired",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "amountAMin",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "amountBMin",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "to", "type": "address[]", "internalType": "address[]" },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "feeParams",
+            "type": "tuple",
+            "internalType": "struct IFeeController.FeeParams",
+            "components": [
+              {
+                "name": "baseFeeParams",
+                "type": "tuple",
+                "internalType": "struct IFeeController.BaseFee",
+                "components": [
+                  {
+                    "name": "baseFeeBps",
+                    "type": "uint24",
+                    "internalType": "uint24"
+                  },
+                  {
+                    "name": "wToken0In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "wToken1In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ]
+              },
+              {
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
+              }
+            ]
+          },
+          {
+            "name": "authorization",
             "type": "tuple",
             "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
             "components": [
@@ -522,110 +458,14 @@
                 ]
               },
               {
-                "name": "dynamicFeeParams",
-                "type": "tuple",
-                "internalType": "struct IFeeController.DynamicFeeParams",
-                "components": [
-                  {
-                    "name": "config",
-                    "type": "tuple",
-                    "internalType": "struct IFeeController.DynamicFeeConfig",
-                    "components": [
-                      {
-                        "name": "halfTimePeriod",
-                        "type": "uint40",
-                        "internalType": "uint40"
-                      },
-                      {
-                        "name": "maxCapBps",
-                        "type": "uint24",
-                        "internalType": "uint24"
-                      },
-                      {
-                        "name": "b1",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "b2",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "sensitivity",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "a0",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "liquidityReference",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "option",
-                    "type": "uint8",
-                    "internalType": "enum IFeeController.DynamicFeeInitializationState"
-                  }
-                ]
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
               }
             ]
           },
           {
-            "name": "authToken",
-            "type": "tuple",
-            "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
-            "components": [
-              {
-                "name": "authority",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "token",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "caller",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "creator",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "creatorNonce",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "actionNonce",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "deadline",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "signature",
-                "type": "bytes",
-                "internalType": "bytes"
-              }
-            ]
-          },
-          {
-            "name": "authWeth",
+            "name": "authorization",
             "type": "tuple",
             "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
             "components": [
@@ -740,63 +580,14 @@
                 ]
               },
               {
-                "name": "dynamicFeeParams",
-                "type": "tuple",
-                "internalType": "struct IFeeController.DynamicFeeParams",
-                "components": [
-                  {
-                    "name": "config",
-                    "type": "tuple",
-                    "internalType": "struct IFeeController.DynamicFeeConfig",
-                    "components": [
-                      {
-                        "name": "halfTimePeriod",
-                        "type": "uint40",
-                        "internalType": "uint40"
-                      },
-                      {
-                        "name": "maxCapBps",
-                        "type": "uint24",
-                        "internalType": "uint24"
-                      },
-                      {
-                        "name": "b1",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "b2",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "sensitivity",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "a0",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "liquidityReference",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "option",
-                    "type": "uint8",
-                    "internalType": "enum IFeeController.DynamicFeeInitializationState"
-                  }
-                ]
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
               }
             ]
           },
           {
-            "name": "authToken",
+            "name": "authorization",
             "type": "tuple",
             "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
             "components": [
@@ -841,9 +632,206 @@
                 "internalType": "bytes"
               }
             ]
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      { "name": "amountToken", "type": "uint256", "internalType": "uint256" },
+      { "name": "amountETH", "type": "uint256", "internalType": "uint256" },
+      { "name": "liquidity", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "addLiquidityETHAndPermanentLockMulti",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct ISomeRouter.AddLiquidityEthParamsMulti",
+        "components": [
+          { "name": "token", "type": "address", "internalType": "address" },
+          {
+            "name": "amountTokenDesired",
+            "type": "uint256",
+            "internalType": "uint256"
           },
           {
-            "name": "authWeth",
+            "name": "amountTokenMin",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "amountETHMin",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "to", "type": "address[]", "internalType": "address[]" },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "feeParams",
+            "type": "tuple",
+            "internalType": "struct IFeeController.FeeParams",
+            "components": [
+              {
+                "name": "baseFeeParams",
+                "type": "tuple",
+                "internalType": "struct IFeeController.BaseFee",
+                "components": [
+                  {
+                    "name": "baseFeeBps",
+                    "type": "uint24",
+                    "internalType": "uint24"
+                  },
+                  {
+                    "name": "wToken0In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "wToken1In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ]
+              },
+              {
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
+              }
+            ]
+          },
+          {
+            "name": "authorization",
+            "type": "tuple",
+            "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
+            "components": [
+              {
+                "name": "authority",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "token",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "caller",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "creatorNonce",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "actionNonce",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "deadline",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "signature",
+                "type": "bytes",
+                "internalType": "bytes"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      { "name": "amountToken", "type": "uint256", "internalType": "uint256" },
+      { "name": "amountETH", "type": "uint256", "internalType": "uint256" },
+      { "name": "liquidity", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "addLiquidityETHMulti",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct ISomeRouter.AddLiquidityEthParamsMulti",
+        "components": [
+          { "name": "token", "type": "address", "internalType": "address" },
+          {
+            "name": "amountTokenDesired",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "amountTokenMin",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "amountETHMin",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "to", "type": "address[]", "internalType": "address[]" },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "feeParams",
+            "type": "tuple",
+            "internalType": "struct IFeeController.FeeParams",
+            "components": [
+              {
+                "name": "baseFeeParams",
+                "type": "tuple",
+                "internalType": "struct IFeeController.BaseFee",
+                "components": [
+                  {
+                    "name": "baseFeeBps",
+                    "type": "uint24",
+                    "internalType": "uint24"
+                  },
+                  {
+                    "name": "wToken0In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "wToken1In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ]
+              },
+              {
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
+              }
+            ]
+          },
+          {
+            "name": "authorization",
             "type": "tuple",
             "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
             "components": [
@@ -958,110 +946,14 @@
                 ]
               },
               {
-                "name": "dynamicFeeParams",
-                "type": "tuple",
-                "internalType": "struct IFeeController.DynamicFeeParams",
-                "components": [
-                  {
-                    "name": "config",
-                    "type": "tuple",
-                    "internalType": "struct IFeeController.DynamicFeeConfig",
-                    "components": [
-                      {
-                        "name": "halfTimePeriod",
-                        "type": "uint40",
-                        "internalType": "uint40"
-                      },
-                      {
-                        "name": "maxCapBps",
-                        "type": "uint24",
-                        "internalType": "uint24"
-                      },
-                      {
-                        "name": "b1",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "b2",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "sensitivity",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "a0",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "liquidityReference",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "option",
-                    "type": "uint8",
-                    "internalType": "enum IFeeController.DynamicFeeInitializationState"
-                  }
-                ]
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
               }
             ]
           },
           {
-            "name": "authToken",
-            "type": "tuple",
-            "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
-            "components": [
-              {
-                "name": "authority",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "token",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "caller",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "creator",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "creatorNonce",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "actionNonce",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "deadline",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "signature",
-                "type": "bytes",
-                "internalType": "bytes"
-              }
-            ]
-          },
-          {
-            "name": "authWeth",
+            "name": "authorization",
             "type": "tuple",
             "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
             "components": [
@@ -1116,6 +1008,134 @@
       { "name": "liquidity", "type": "uint256", "internalType": "uint256" }
     ],
     "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "addLiquidityMulti",
+    "inputs": [
+      {
+        "name": "params",
+        "type": "tuple",
+        "internalType": "struct ISomeRouter.AddLiquidityParamsMulti",
+        "components": [
+          { "name": "tokenA", "type": "address", "internalType": "address" },
+          { "name": "tokenB", "type": "address", "internalType": "address" },
+          {
+            "name": "amountADesired",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "amountBDesired",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "amountAMin",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "amountBMin",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "to", "type": "address[]", "internalType": "address[]" },
+          {
+            "name": "deadline",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "feeParams",
+            "type": "tuple",
+            "internalType": "struct IFeeController.FeeParams",
+            "components": [
+              {
+                "name": "baseFeeParams",
+                "type": "tuple",
+                "internalType": "struct IFeeController.BaseFee",
+                "components": [
+                  {
+                    "name": "baseFeeBps",
+                    "type": "uint24",
+                    "internalType": "uint24"
+                  },
+                  {
+                    "name": "wToken0In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  },
+                  {
+                    "name": "wToken1In",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ]
+              },
+              {
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
+              }
+            ]
+          },
+          {
+            "name": "authorization",
+            "type": "tuple",
+            "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
+            "components": [
+              {
+                "name": "authority",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "token",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "caller",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              },
+              {
+                "name": "creatorNonce",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "actionNonce",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "deadline",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "signature",
+                "type": "bytes",
+                "internalType": "bytes"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      { "name": "amountA", "type": "uint256", "internalType": "uint256" },
+      { "name": "amountB", "type": "uint256", "internalType": "uint256" },
+      { "name": "liquidity", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
   },
   {
     "type": "function",
@@ -1182,110 +1202,14 @@
                 ]
               },
               {
-                "name": "dynamicFeeParams",
-                "type": "tuple",
-                "internalType": "struct IFeeController.DynamicFeeParams",
-                "components": [
-                  {
-                    "name": "config",
-                    "type": "tuple",
-                    "internalType": "struct IFeeController.DynamicFeeConfig",
-                    "components": [
-                      {
-                        "name": "halfTimePeriod",
-                        "type": "uint40",
-                        "internalType": "uint40"
-                      },
-                      {
-                        "name": "maxCapBps",
-                        "type": "uint24",
-                        "internalType": "uint24"
-                      },
-                      {
-                        "name": "b1",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "b2",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "sensitivity",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "a0",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      },
-                      {
-                        "name": "liquidityReference",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "option",
-                    "type": "uint8",
-                    "internalType": "enum IFeeController.DynamicFeeInitializationState"
-                  }
-                ]
+                "name": "useDynamicFee",
+                "type": "bool",
+                "internalType": "bool"
               }
             ]
           },
           {
-            "name": "authA",
-            "type": "tuple",
-            "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
-            "components": [
-              {
-                "name": "authority",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "token",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "caller",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "creator",
-                "type": "address",
-                "internalType": "address"
-              },
-              {
-                "name": "creatorNonce",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "actionNonce",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "deadline",
-                "type": "uint256",
-                "internalType": "uint256"
-              },
-              {
-                "name": "signature",
-                "type": "bytes",
-                "internalType": "bytes"
-              }
-            ]
-          },
-          {
-            "name": "authB",
+            "name": "authorization",
             "type": "tuple",
             "internalType": "struct SomePPAccessRegistry.PairCreatorAuthorization",
             "components": [
