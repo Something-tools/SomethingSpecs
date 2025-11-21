@@ -4,4 +4,4 @@
 
 ---
 
-### **Contracts located under the `v1.0.5rc` directory have been deployed to the testnet.**
+### **Contracts located under the `testnet` directory have been deployed to the testnet.**
