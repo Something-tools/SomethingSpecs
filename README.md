@@ -1,6 +1,6 @@
 # NOTE
 
-## **Oficial testnet contracts located under the `testnet` directory have been deployed to the testnet.**
+## **Official testnet contracts located under the `testnet` directory have been deployed to the testnet.**
 
 ### Tokens for test:
 
