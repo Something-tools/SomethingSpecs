@@ -2,6 +2,12 @@
 
 ## **Official mainnet-beta contracts located under the `mainnet-beta` directory have been deployed to the monad mainnet.**
 
+## Tokens for test on mainnet-beta:
+
+- **(token on curve)**: `0xA1d216bcB6eB324C5723dbaa369704Fb3843db8A  `
+
+---
+
 ### **Official testnet contracts located under the `testnet` directory have been deployed to the testnet.**
 
 ### Tokens for test on testnet:
