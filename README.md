@@ -4,7 +4,8 @@
 
 ## Tokens for test on mainnet-beta:
 
-- **(token on curve)**: `0xA1d216bcB6eB324C5723dbaa369704Fb3843db8A  `
+- **(token on curve)**: `0xA1d216bcB6eB324C5723dbaa369704Fb3843db8A`
+- **(migrated to AMM)**: `0xc7c7e74438a8fac52378da0af66ccbed0c608de1`
 
 ---
 
