@@ -1,0 +1,17 @@
+{
+  "name": "something-examples",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "ts-node-esm src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "viem": "^2.40.3"
+  },
+  "devDependencies": {
+    "prettier": "3.7.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
