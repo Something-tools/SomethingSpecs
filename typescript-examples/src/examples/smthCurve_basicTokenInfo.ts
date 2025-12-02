@@ -1,8 +1,8 @@
-import { getBasicTokenInfo } from "../utils/getBasicTokenInfo.ts";
+import { getBasicTokenInfo } from "../protocol/bondingCurve/getBasicTokenInfo.ts";
 import { formatBigNumberForUI } from "../utils/formatBigNumberForUI.ts";
 import { cfg } from "../config.ts";
 
-export const basicTokenInfo = async () => {
+export const smthCurve_basicTokenInfo = async () => {
   const tokenInfo = await getBasicTokenInfo(cfg.EXAMPLE_CURVE_TOKEN);
 
   return {

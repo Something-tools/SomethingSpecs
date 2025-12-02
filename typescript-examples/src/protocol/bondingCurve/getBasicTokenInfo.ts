@@ -1,12 +1,12 @@
 import type { Address } from "viem/accounts";
-import { client } from "../client.ts";
-import { cfg } from "../config.ts";
-import { smth_token_factory } from "../abis/smth_token_factory.ts";
+import { client } from "../../core/client/client.ts";
+import { cfg } from "../../config.ts";
+import { smthTokenFactoryAbi } from "../../core/contracts/generated/contracts.ts";
 
 export async function getBasicTokenInfo(token: Address) {
   const info = await client.readContract({
     address: cfg.SOMETHING_CURVE_ADDRESS,
-    abi: smth_token_factory,
+    abi: smthTokenFactoryAbi,
     functionName: "tokenInfo",
     args: [token],
   });
