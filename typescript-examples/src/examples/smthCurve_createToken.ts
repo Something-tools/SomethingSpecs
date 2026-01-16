@@ -23,8 +23,14 @@ export const smthCurve_createToken = async () => {
     const initialRatio = cfg.EXAMPLE_INITIAL_RATIO_BPS;
     // Quote asset used for the curve (WMON by default)
     const quoteAsset = cfg.WMON_ADDRESS;
-    // Fee preset enum value (0 = 0.25%, 1 = 1%, 2 = 3%)
-    const feePercent = 0;
+    // Bonding curve fee config preset (matches backend mapping)
+    const feePercent = (
+      {
+        Low: 0,
+        Medium: 1,
+        High: 2,
+      } as const
+    )[cfg.EXAMPLE_BCURVE_CONFIG];
     // Optional buyback amount paid as msg.value (in wei)
     const buybackAmount = cfg.EXAMPLE_BUYBACK_AMOUNT || 0n;
     const value = buybackAmount;
