@@ -1,0 +1,33 @@
+# SomeSwap v2 Specs
+
+This folder contains testnet specs for SomeSwap v2: ABIs, addresses, and protocol docs.
+
+## Layout
+
+- `testnet/someswap/addresses.json` - contract addresses
+- `testnet/someswap/abi/` - contract ABIs
+- `testnet/someswap/docs/` - protocol documentation
+
+## Testnet addresses
+
+From `testnet/someswap/addresses.json`:
+
+- `factory`: `0x2055F3F5f934c8c1b1E09A377cB56A85586A9138`
+- `router`: `0xF4B30295EA24938d9705E30F88e144140422BAa3`
+- `quoter`: `0x2d33838e6DE7391083a466814B4aFEb4FCa25Ea8`
+- `lpFeeManager`: `0x5Ba1A2918777595A9c6f04AD7e44B7fe8c86123b`
+- `liquidityLocker`: `0x5aB5A8f8D70462918829A61797180b74a92E6e80`
+- `wethModule`: `0x7153f466a8DE3ee8bb7196F8b4c615aD06F4b175`
+- `coreModule`: `0xff9EF89b24943A86bB684C1439dF63F653b539F0`
+- `permissionsRegistry`: `0x552b11a4a9BBbD4b88588950A5B519D0aeCf52ED`
+
+## Docs
+
+See `testnet/someswap/docs/` for:
+
+- protocol overview
+- permissions registry
+- quoter fee policy
+- fee-on-transfer policy
+- user functions
+- lunar pool details
