@@ -30,4 +30,4 @@ See `testnet/someswap/docs/` for:
 - quoter fee policy
 - fee-on-transfer policy
 - user functions
-- lunar pool details
+- someswap-v2 pool details
