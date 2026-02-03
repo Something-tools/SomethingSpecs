@@ -188,11 +188,7 @@
     "name": "SomeSwapV2LpFeeManager__AmountTooLarge",
     "inputs": []
   },
-  {
-    "type": "error",
-    "name": "SomeSwapV2LpFeeManager__NotPool",
-    "inputs": []
-  },
+  { "type": "error", "name": "SomeSwapV2LpFeeManager__NotPool", "inputs": [] },
   {
     "type": "error",
     "name": "SomeSwapV2LpFeeManager__NothingToClaim",

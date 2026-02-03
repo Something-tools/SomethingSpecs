@@ -598,3 +598,12 @@ Router.addLiquidityAndLock
 ```
 
 ---
+
+
+---
+
+## Native Currency Handling (address(0))
+
+- Native currency uses `address(0)` in pool/route parameters.
+- Router wraps/unwraps only at path edges and refunds excess `msg.value`.
+- Multi-hop paths must not include native in the middle.

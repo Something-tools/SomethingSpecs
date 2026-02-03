@@ -648,16 +648,8 @@
     "inputs": []
   },
   { "type": "error", "name": "SomeSwapV2Pool__FeeExceedsOut", "inputs": [] },
-  {
-    "type": "error",
-    "name": "SomeSwapV2Pool__FeeManagerUnset",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "SomeSwapV2Pool__InsufficientAdd",
-    "inputs": []
-  },
+  { "type": "error", "name": "SomeSwapV2Pool__FeeManagerUnset", "inputs": [] },
+  { "type": "error", "name": "SomeSwapV2Pool__InsufficientAdd", "inputs": [] },
   {
     "type": "error",
     "name": "SomeSwapV2Pool__InsufficientAllowance",
@@ -668,16 +660,8 @@
     "name": "SomeSwapV2Pool__InsufficientBalance",
     "inputs": []
   },
-  {
-    "type": "error",
-    "name": "SomeSwapV2Pool__InsufficientBurn",
-    "inputs": []
-  },
-  {
-    "type": "error",
-    "name": "SomeSwapV2Pool__InsufficientFees",
-    "inputs": []
-  },
+  { "type": "error", "name": "SomeSwapV2Pool__InsufficientBurn", "inputs": [] },
+  { "type": "error", "name": "SomeSwapV2Pool__InsufficientFees", "inputs": [] },
   {
     "type": "error",
     "name": "SomeSwapV2Pool__InsufficientInput",

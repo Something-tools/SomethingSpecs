@@ -31,3 +31,38 @@ See `testnet/someswap/docs/` for:
 - fee-on-transfer policy
 - user functions
 - someswap-v2 pool details
+
+---
+
+## Native Currency Handling (address(0))
+
+- Native currency is represented as `address(0)`.
+- Router handles wrapping/unwrapping only at the path edges.
+- Multi-hop paths must not include native as an intermediate hop.
+- Router refunds excess `msg.value` when applicable.
+
+## ModuleMask and Permissions (Practical)
+
+- `moduleMask` is a bitmask of enabled module categories.
+- Bit 0 (value `1`) is reserved for **core module** and must always be set.
+- `PermissionsRegistry` can restrict which swap flags core/user modules may use per pool.
+
+## Upgradeability (Core Module)
+
+- `SomeSwapV2CoreModule` is UUPS-upgradeable.
+- Upgrade flow:
+  1. Deploy new implementation.
+  2. Call `upgradeTo` on the proxy via the upgrade script.
+- Only core owner can authorize upgrades.
+
+## LP Fees: Pool vs Fee Manager
+
+- Pool accrues LP fees in buckets (`fees0/fees1`).
+- Fee manager performs non‑diluted per‑account tracking and exposes `claim()`.
+- `SomeSwapV2Pool.collectFees` is **fee‑manager‑only** and moves fees to users.
+
+## Liquidity Locker Beneficiary Semantics
+
+- Beneficiary claims fees while lock is active.
+- Changing beneficiary pays out accrued fees to previous beneficiary first.
+- After unlock, owner regains fee accruals.
